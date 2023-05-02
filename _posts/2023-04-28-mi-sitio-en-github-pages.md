@@ -217,10 +217,46 @@ git add .
 git commit -m "Prueba de publicacion de cambios para usar actions"
 git push origin main
 
-```
+```  
+
+Se puede comprobar la compilación, ingresando a la pestaña `Actions` y verificando los cambios en el sitio publicado.  
+![Publicando cambios al repositorio remoto usando Actions][publicacion-actions]  
+
+Para probar el sitio se usa la [url generada por el repositorio][sitio_pages], y accediendo a ver los resultados.  
+![Imagen resumen][actions-resume]
 
 
 ### Crear Contenido usando Markdown y un procesador de este formato
+Para crear una publicación debe crear un directorio llamado `_posts` y en el debe crear un fichero en formato Markdown con la estructura siguiente `AAAA-MM-DD-NOMBRE-POST.md` reemplazando AAAA-MM-DD por la fecha de publicación y NOMBRE-POST por el nombre de la publicación.  
+
+El fichero se crea con el formato Markdown de manera interna, pero se puede manipular la metainformación del sitio en la parte superior siguiendo el siguiente formato:  
+
+```yaml
+
+layout: post
+title: "POST-TITLE"
+date: YYYY-MM-DD hh:mm:ss -0000
+categories: CATEGORY-1 CATEGORY-2
+
+```  
+
+Esto se puede demostrar en el siguiente ejemplo:   
+
+```
+
+---
+layout: post
+title:  "Mi sitio en GitHub Pages con Jekyll"
+date:   2023-04-28 15:57:19 -0600
+categories: tutorial
+author: "Yesser Miranda"
+meta: "Nicaragua"
+---
+
+```
+
+> Es posible crear nuevas páginas del sitio creando ficheros en el directorio del sitio y manipulando su vínculo con el atributo `permalink`.
+
 
 <!--DOCS-->
 [github_pages]: https://pages.github.com/ "Pagina de inicio de GitHub Pages"
@@ -235,7 +271,10 @@ git push origin main
 [html]: https://developer.mozilla.org/es/docs/Web/HTML "Lenguaje de Marcas de Hipertexto"
 [rbenv]: https://github.com/rbenv/rbenv "Herramienta administradora de versiones del Lenguaje de programación Ruby"
 [versiones_pages]: https://pages.github.com/versions/ "Versionamiento de github pages y plugins de jekyll"
+[sitio_pages]: https://yesserm.github.io "Sitio principal publicado"
 
 <!--IMAGES-->
 [repo]: /images/create-new-repo-github.jpg "Crear un nuevo repositorio de GitHub"
 [conf-sources-pages]: /images/setup-deploy-main-pages.jpg "Configuración de GitHub Pages para tomar cambios de main"
+[publicacion-actions]: /images/publicando-sitio-actions.jpg "Publicando sitio en GitHub y usar el flujo personalizado"
+[actions-resume]: /images/actions-test.jpg "Probando en la URL generada"

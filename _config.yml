@@ -16,14 +16,14 @@
 title: Yesser Miranda Dev
 email: yessermiranda15@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Un sitio dedicado a compartir experiencias obtenidas en el mundo de la programación y tecnologías relacionadas a la nube nativa. 
 domain: yesserm.github.io
-baseurl: "/" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://yesserm.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: yessermiranda97
 github_username:  yesserm
+facebook_username: yessermiranda97
+linkedin_username: yessermiranda97
 
 # Build settings
 markdown: kramdown

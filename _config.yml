@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Yesser Miranda Dev
+title: Yesser Miranda Developer
 email: yessermiranda15@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Un sitio dedicado a compartir experiencias obtenidas en el mundo de la programación y tecnologías relacionadas a la nube nativa. 

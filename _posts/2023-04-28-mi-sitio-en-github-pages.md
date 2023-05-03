@@ -13,14 +13,15 @@ Estaré compartiendo paso a paso como logré implementar mi sitio con [GitHub Ac
 
 ### Contenido
 - [Creación del repositorio en GitHub](#creación-del-repositorio-en-github)
+- - [Configurar una fuente de publicación en GitHub](#configurar-una-fuente-de-publicación-en-github)
 - [Crea tu sitio con Jekyll](#crea-tu-sitio-con-jekyll)
   - [Instalación de Ruby](#instalación-de-ruby)
-  - [Instalación de Bundler](#instalación-de-bundler)
+  - [Instalación de Jekyll y Bundler](#instalación-de-jekyll-y-bundler)
   - [Crea tu sitio y configura los aspectos básicos](#crea-tu-sitio-y-configura-los-aspectos-básicos)
-  - [Publica los cambios](#publica-los-cambios)
+  - [Prueba los cambios localmente](#prueba-los-cambios-localmente)
 - [Elije un tema para tu sitio](#elije-un-tema-para-tu-sitio)
-- [Configurar una fuente de publicación en GitHub](#configurar-una-fuente-de-publicación-en-github)
   - [Uso un flujo de trabajo de GitHub Actions personalizado](#uso-de-un-flujo-de-trabajo-de-github-actions-personalizado)
+  - [Publica los cambios](#publica-los-cambios)
 - [Crear contenido usando Markdown y un procesador de este formato](#crear-contenido-usando-markdown-y-un-procesador-de-este-formato)
 
 ### Creación del repositorio en GitHub

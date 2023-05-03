@@ -24,13 +24,13 @@ Estaré compartiendo paso a paso como logré implementar mi sitio con [GitHub Ac
 - [Crear contenido usando Markdown y un procesador de este formato](#crear-contenido-usando-markdown-y-un-procesador-de-este-formato)
 
 ### Creación del repositorio en GitHub
-Lo primero que debemos tener es, un repositorio en GitHub, donde puedas almacenar la información a compartir, para eso debemos ir a la opción de agregar un Nuevo repositorio en nuestra cuenta de GitHub y establecer algunos parámetros necesarios como el nombre del repositorio que debe coincidir con el siguiente formato `<usuario>.github.io`. Listo, tenemos nuestro repositorio que va a hospedar nuestros ficheros informativos.  
+Lo primero que debemos tener es, un repositorio en GitHub, donde puedas almacenar la información a compartir, para eso debemos ir a la opción de agregar un **Nuevo repositorio** en nuestra cuenta de GitHub y establecer algunos parámetros necesarios, uno de ellos, el nombre del repositorio debe coincidir con el siguiente formato `<usuario>.github.io`. ¡Listo!, tenemos nuestro repositorio que va a hospedar nuestros ficheros informativos.  
 ![Repositorio de GitHub para Pages][repo]
-Hay que tener en cuenta que existen límites de compilación del sitio a producción, por eso recomiendo mejor trabajar con una herramienta generadora de sitios estáticos como [Jekyll][jekyll] que facilita la creación de un sitio base y la construcción de este, usando un empaquetador y gestor de dependencias de las gemas de Ruby para que estas coincidan en versiones en los diferentes entornos por donde pase el proyecto.  
+Hay que tener en cuenta que existen límites de compilación del sitio a producción, por eso recomiendo mejor trabajar con una herramienta generadora de sitios estáticos como [Jekyll][jekyll] que facilita la creación de un sitio base y la construcción de este, usando un empaquetador y gestor de dependencias de las gemas de Ruby, para que estas coincidan en versiones en los diferentes entornos por donde pase el proyecto.  
 #### Configurar una fuente de publicación en GitHub
-Debido a que GitHub siempre automatiza la publicación de los recursos que sean agregados en el repositorio, puedes enviar un simple fichero `index.md`, `index.html` o un `README.md` con un simple título de página y GitHub Actions tomará ese fichero y lo publicará con un flujo de trabajo interno. Pero es necesario configurar cual es la fuente de publicación que se debe usar, por tanto, debes ir a la configuración del repositorio remoto, en el apartado de páginas relacionado a GitHub Pages y seleccionar el tipo de fuente que puede ser desde una rama del repositorio y un flujo de trabajo personalizado con GitHub Actions.  
+Debido a que, GitHub siempre automatiza la publicación de los recursos que sean agregados en el repositorio, puedes enviar un simple fichero `index.md`, `index.html` o un `README.md` con un simple título de página y GitHub Actions tomará ese fichero, generará el contenido estático y lo publicará con un flujo de trabajo interno, usando Jekyll y diferentes plugins que garantizan una correcta generación y conversión de estos formatos. Pero, es necesario configurar la fuente de publicación a usar, por tanto, debes ir a la configuración del repositorio remoto en GitHub, en el apartado de páginas relacionado a GitHub Pages y seleccionar el tipo de fuente a usar, esta puede ser desde una rama del repositorio remoto hasta un flujo de trabajo personalizado con GitHub Actions.  
 
-- Para poder configurar este apartado, es necesario subir contenido al repositorio remoto, lo más sencillo de hacer es clonar el repositorio remoto y agregar al menos un fichero, debemos tener en cuenta que el repositorio debe ser personal:  
+- Para poder configurar este apartado, es necesario subir contenido al repositorio remoto, donde, lo más sencillo de hacer es clonar el repositorio remoto y agregar al menos un fichero en cualquiera de los formatos permitidos, adicionalmente, debemos tener en cuenta que el repositorio debe ser personal:  
 
 ```bash
 
@@ -53,9 +53,9 @@ git push origin main
 
 - Esto debería publicar los cambios en el repositorio remoto y habilitar la configuración de la fuente de publicación a GitHub Pages, la cual debería verse como a continuación:  
 ![Configuracion de la fuente de GitHub Pages][conf-sources-pages]  
-Si se usa esta opción, que es tomar el código de la rama principal y publicarlo, deja un límite de 10 compilaciones cada hora, por eso es recomendable usar un flujo de trabajo de GitHub Actions personalizado.  
+Si se usa esta opción, la cual toma el código de la rama principal y publicarlo, deja un límite de 10 compilaciones cada hora, por eso es recomendable usar un flujo de trabajo de GitHub Actions personalizado.  
 
-Para evitar estar usando compilación a cada momento en GitHub Actions, es recomendable trabajar con el generador de sitios estático Jekyll, que viene integrado en GitHub Pages y soporta [Markdown][markdown], [HTML][html] y el lenguaje de plantillas [Liquid][liquid]. Para eso vamos a trabajar nuestro sitio con esta herramienta y usando todas sus bondades.
+Para evitar estar usando compilación a cada momento en GitHub Actions, es recomendable trabajar con el generador de sitios estáticos de Jekyll, que viene integrado en GitHub Pages y soporta [Markdown][markdown], [HTML][html] y el lenguaje de plantillas [Liquid][liquid]. Para eso, vamos a trabajar nuestro sitio con esta herramienta y usando la mayoría de sus características.
 
 ### Crea tu sitio con Jekyll
 Puedes usar tanto Linux como MacOS y dispondrás de Jekyll, luego de instalar los requerimientos de la herramienta, los cuales son: 
@@ -100,6 +100,8 @@ rbenv global 3.1.4
 
 ```  
 
+> Si no funciona el comando `install` con rbenv, debe instalar ruby-build usando el siguiente comando `git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build`
+
 - Comprobar la instalación de Ruby, RubyGem, GCC y Make  
 
 ```bash
@@ -112,6 +114,7 @@ gem -v
 
 # version de gcc
 gcc -v
+g++ -v
 
 # version de make
 make -v
@@ -119,7 +122,7 @@ make -v
 ```  
 
 #### Instalación de Jekyll y Bundler
-Luego de haber cumplido los requerimientos de las herramientas, es momento de instalar Jekyll y Bundler en la máquina. Esto garantizará que las gemas se mantengan actualizadas y evitar errores en la construcción con Jekyll y el entorno en el que se ejecuta.
+Luego de haber cumplido los requerimientos de las herramientas, es momento de instalar Jekyll y Bundler en la máquina. Esto garantizará que las gemas se mantengan actualizadas y evitar errores en la construcción de sitios con Jekyll y la ejecución en cualquier entorno en el que se ejecute.
 
 ```bash
 
@@ -142,7 +145,7 @@ gem "github-pages", "~> 228", group: :jekyll_plugins
 
 ```  
 
-- Proceda a guardar los cambios realizados en el fichero y ejecute el siguiente comando, que va a instalar el plugin de `github_pages` con la versión de `jekyll` compatible.  
+- Proceda a guardar los cambios realizados en el fichero y ejecute el siguiente comando, esto va a instalar el plugin de `github_pages` con la versión de `jekyll` compatible.  
 
 ```bash
 
@@ -154,6 +157,7 @@ bundle install
 
 ```yaml
 
+title: "Yesser Miranda Dev"
 domain: yesserm.github.io
 url: https://yesserm.github.io
 baseulr: "" # agregar si el sitio se encuentra en un subdirectorio
@@ -161,7 +165,7 @@ baseulr: "" # agregar si el sitio se encuentra en un subdirectorio
 ```  
 
 #### Prueba los cambios localmente
-Si publicamos estos cambios a GitHub, debemos suponer que se han de publicar, pero para evitar muchas compilaciones remotas, podemos ejecutar un servidor local utilizando `bundle` con el siguiente comando:  
+Si publicamos estos cambios a GitHub, debemos suponer que se han de desplegar en GitHub Pages, pero para evitar muchas compilaciones remotas, podemos ejecutar un servidor local utilizando `bundle` con el siguiente comando:  
 
 ```
 
@@ -171,7 +175,7 @@ bundle exec jekyll serve
 
 > Como instalamos Ruby 3.0 o posterior, es posible recibir un error al intentar ejecutar el servidor, esto se debe a que Ruby ya no incluye `webrick` y debemos agregarlo con: `bundle add webrick` y de nuevo volver a ejecutar el comando anterior.  
 
-El comando anterior genera un sitio local en la dirección `http://localhost:4000`, pero si queremos ejecutar el sitio en una red local podemos ejecutar una variante del comando que ejecuta un servidor local.  
+El comando anterior genera un servidor web local  que podemos acceder con la dirección `http://localhost:4000`, pero si queremos ejecutar el sitio en una red local con una dirección IP de la red, podemos ejecutar una variante del comando que ejecuta un servidor web en la red local.  
 
 ```bash
 
@@ -192,19 +196,19 @@ bundle exec jekyll serve
 
 ```  
 
-En el caso que desee realizar modificaciones sobre el tema, únicamente debe realizar una copia del fichero HTML, CSS correspondiente en la raíz del sitio, en su carpeta correspondiente, por ejemplo en `assets`.  
+En el caso que desee realizar modificaciones sobre el tema, únicamente debe realizar una copia del fichero HTML, CSS correspondiente del tema en uso y llevarlo a la raíz del sitio, en su carpeta correspondiente, por ejemplo, copiar `main.css` en `assets/css`.  
 
 #### Uso de un flujo de trabajo de GitHub Actions personalizado
-Aunque esta opción se encuentra aún en versión beta, viene a ser a la más sencilla de administrar, ya que con esta nos quitamos las limitaciones de compilación. Solamente, se debe cambiar el tipo de fuente de publicación en la configuración del repositorio del sitio. Luego de eso preparar un flujo de trabajo de GitHub Actions, en el momento de cambiar el tipo de fuente, GitHub propone un flujo de trabajo base que sirve para automatizar nuestro sitio almacenado en la rama principal del repositorio en la raíz del proyecto.  
+Aunque esta opción se encuentra aún en versión beta, viene a ser la más sencilla de administrar, con esta opción nos quitamos las limitaciones de compilación. Solamente, se debe cambiar el tipo de fuente de publicación en la configuración del repositorio del sitio. Luego de eso preparar un flujo de trabajo de GitHub Actions, en el momento de cambiar el tipo de fuente, GitHub propone un flujo de trabajo base que sirve para automatizar nuestro sitio almacenado en la rama principal del repositorio en la raíz del proyecto.  
 
-El fichero de configuración puede verse como el siguiente código:  
+El fichero de configuración brindado por GitHub puede verse como el siguiente código, que debe agregarse en la raíz del proyecto en el directorio `.github/workflows/`:  
 
 <script src="https://gist.github.com/yesserm/d2ff50b76173f870972c3c67926a85db.js"></script>  
 
 El flujo de trabajo general funciona de la siguiente manera:  
-- Se desencada al realizar un evento sobre la rama seleccionada, por ejemplo, un publicación directa con `git`
+- Se desencadena al realizar un evento sobre la rama seleccionada, por ejemplo, un publicación directa con `git` a la rama *main*
 - Se usa la acción `actions/checkout` en cualquiera de sus versiones, de preferencia la más reciente, para poder extraer el contenido del repositorio.
-- En el caso de que el sitio posea ficheros que necesiten compilarse como el formato Markdown, ficheros SASS, etc.
+- En el caso de que el sitio posea ficheros que necesiten generarse a formato estático como Markdown, ficheros SASS, etc. esto se realizará en caso de ser necesario. 
 - Se usa la acción `actions/upload-pages-artifact` para cargar los archivos estáticos.
 - Se usa la acción `actions/deploy-pages` para publicar en GitHub Pages.
 
@@ -223,7 +227,10 @@ Se puede comprobar la compilación, ingresando a la pestaña `Actions` y verific
 ![Publicando cambios al repositorio remoto usando Actions][publicacion-actions]  
 
 Para probar el sitio se usa la [url generada por el repositorio][sitio_pages], y accediendo a ver los resultados.  
-![Imagen resumen][actions-resume]
+![Imagen resumen][actions-resume]  
+
+El sitio publicado se puede encontrar como el resultado del despliegue realizado con GitHub Actions, donde se puede encontrar una publicación de ejemplo  
+![Sitio publicado en GitHub Pages][sitio-publicado]
 
 
 ### Crear Contenido usando Markdown y un procesador de este formato
@@ -240,7 +247,7 @@ categories: CATEGORY-1 CATEGORY-2
 
 ```  
 
-Esto se puede demostrar en el siguiente ejemplo:   
+Cada tema dispone de sus propios diseños personalizados, en el caso del tema `minima`, dispone diseños base para publiaciones y páginas. Esto se puede demostrar en el siguiente ejemplo de publicación:   
 
 ```
 
@@ -252,8 +259,13 @@ categories: tutorial
 author: "Yesser Miranda"
 meta: "Nicaragua"
 ---
+<!--aquí va el contenido-->
+```  
 
-```
+El resultado de todo código Markdown, se compila a HTML, junto a diseño con CSS en GitHub Pages, y el resultado es asombroso.  
+![Sitio final publicado parte índice][post-sitio-1]
+![Sitio final publicado parte código][post-sitio-2]
+
 
 > Es posible crear nuevas páginas del sitio creando ficheros en el directorio del sitio y manipulando su vínculo con el atributo `permalink`.
 
@@ -278,3 +290,6 @@ meta: "Nicaragua"
 [conf-sources-pages]: /images/setup-deploy-main-pages.jpg "Configuración de GitHub Pages para tomar cambios de main"
 [publicacion-actions]: /images/publicando-sitio-actions.jpg "Publicando sitio en GitHub y usar el flujo personalizado"
 [actions-resume]: /images/actions-test.jpg "Probando en la URL generada"
+[sitio-publicado]: /images/sitio-final-publicado.jpg "Sitio publicado en GitHub Pages"
+[post-sitio-1]: /images/post-mi-sitio-1.jpg "Sitio de publicación final parte de índice"
+[post-sitio-2]: /images/post-mi-sitio-2.jpg "Sitio de publicación final parte de código"
